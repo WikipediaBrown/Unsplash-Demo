@@ -3,18 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		038BCFB480052D064A92C8F7 /* Pods_Unsplash_Demo_Unsplash_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9D301992EB055C9C7275D1A /* Pods_Unsplash_Demo_Unsplash_DemoUITests.framework */; };
+		5515D14DAFC64B009F9DF736 /* Pods_Unsplash_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C90E0BFC5B65465E8A7A5E4B /* Pods_Unsplash_Demo.framework */; };
 		5BADA0AC2370D41A002AD1A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0AB2370D41A002AD1A4 /* AppDelegate.swift */; };
 		5BADA0AE2370D41A002AD1A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0AD2370D41A002AD1A4 /* SceneDelegate.swift */; };
-		5BADA0B02370D41A002AD1A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0AF2370D41A002AD1A4 /* ViewController.swift */; };
-		5BADA0B32370D41A002AD1A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BADA0B12370D41A002AD1A4 /* Main.storyboard */; };
 		5BADA0B52370D41B002AD1A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BADA0B42370D41B002AD1A4 /* Assets.xcassets */; };
 		5BADA0B82370D41B002AD1A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BADA0B62370D41B002AD1A4 /* LaunchScreen.storyboard */; };
 		5BADA0C32370D41B002AD1A4 /* Unsplash_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0C22370D41B002AD1A4 /* Unsplash_DemoTests.swift */; };
 		5BADA0CE2370D41B002AD1A4 /* Unsplash_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0CD2370D41B002AD1A4 /* Unsplash_DemoUITests.swift */; };
+		5BADA0DE2370D47E002AD1A4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0DD2370D47E002AD1A4 /* NetworkManager.swift */; };
+		5BADA0E02370D49A002AD1A4 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0DF2370D49A002AD1A4 /* ImageManager.swift */; };
+		5BADA0E82370D7FB002AD1A4 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0E42370D7FB002AD1A4 /* RootRouter.swift */; };
+		5BADA0E92370D7FB002AD1A4 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0E52370D7FB002AD1A4 /* RootViewController.swift */; };
+		5BADA0EA2370D7FB002AD1A4 /* RootBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0E62370D7FB002AD1A4 /* RootBuilder.swift */; };
+		5BADA0EB2370D7FB002AD1A4 /* RootInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0E72370D7FB002AD1A4 /* RootInteractor.swift */; };
+		5BADA0ED2370D8AE002AD1A4 /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0EC2370D8AE002AD1A4 /* AppComponent.swift */; };
+		5BADA0F02370DFBE002AD1A4 /* RootCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0EF2370DFBE002AD1A4 /* RootCollectionView.swift */; };
+		5BADA0F22370DFCD002AD1A4 /* RootCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0F12370DFCD002AD1A4 /* RootCell.swift */; };
+		5BADA0F52370E03F002AD1A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0F42370E03F002AD1A4 /* Constants.swift */; };
+		5BADA0F72370EB2B002AD1A4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0F62370EB2B002AD1A4 /* Image.swift */; };
+		5BADA0F92370EC98002AD1A4 /* ImagePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0F82370EC98002AD1A4 /* ImagePage.swift */; };
+		5BADA0FB2370F6A5002AD1A4 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0FA2370F6A5002AD1A4 /* Errors.swift */; };
+		5BADA0FD23710B49002AD1A4 /* ImageURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0FC23710B49002AD1A4 /* ImageURLs.swift */; };
+		F01F1C112FD451E15D622013 /* Pods_Unsplash_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C15EDD8184DC1CB3CC71EB3 /* Pods_Unsplash_DemoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +50,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C15EDD8184DC1CB3CC71EB3 /* Pods_Unsplash_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F9C99463D81F67729E7D44B /* Pods-Unsplash-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-Demo.release.xcconfig"; path = "Target Support Files/Pods-Unsplash-Demo/Pods-Unsplash-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		485CD31FC742F12E98F8E215 /* Pods-Unsplash-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Unsplash-Demo/Pods-Unsplash-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		5BADA0A82370D41A002AD1A4 /* Unsplash-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unsplash-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BADA0AB2370D41A002AD1A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BADA0AD2370D41A002AD1A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5BADA0AF2370D41A002AD1A4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5BADA0B22370D41A002AD1A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5BADA0B42370D41B002AD1A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BADA0B72370D41B002AD1A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BADA0B92370D41B002AD1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +65,26 @@
 		5BADA0C92370D41B002AD1A4 /* Unsplash-DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unsplash-DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BADA0CD2370D41B002AD1A4 /* Unsplash_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unsplash_DemoUITests.swift; sourceTree = "<group>"; };
 		5BADA0CF2370D41B002AD1A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BADA0DD2370D47E002AD1A4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		5BADA0DF2370D49A002AD1A4 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		5BADA0E42370D7FB002AD1A4 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
+		5BADA0E52370D7FB002AD1A4 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		5BADA0E62370D7FB002AD1A4 /* RootBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootBuilder.swift; sourceTree = "<group>"; };
+		5BADA0E72370D7FB002AD1A4 /* RootInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootInteractor.swift; sourceTree = "<group>"; };
+		5BADA0EC2370D8AE002AD1A4 /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		5BADA0EF2370DFBE002AD1A4 /* RootCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCollectionView.swift; sourceTree = "<group>"; };
+		5BADA0F12370DFCD002AD1A4 /* RootCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCell.swift; sourceTree = "<group>"; };
+		5BADA0F42370E03F002AD1A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5BADA0F62370EB2B002AD1A4 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		5BADA0F82370EC98002AD1A4 /* ImagePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePage.swift; sourceTree = "<group>"; };
+		5BADA0FA2370F6A5002AD1A4 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		5BADA0FC23710B49002AD1A4 /* ImageURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLs.swift; sourceTree = "<group>"; };
+		8E269A25E20C882CBCC08C33 /* Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Unsplash-Demo-Unsplash-DemoUITests/Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A73EDCD061F18F209902CFFB /* Pods-Unsplash-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-DemoTests.release.xcconfig"; path = "Target Support Files/Pods-Unsplash-DemoTests/Pods-Unsplash-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		B9D301992EB055C9C7275D1A /* Pods_Unsplash_Demo_Unsplash_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_Demo_Unsplash_DemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3234ED56D65C4FD0A33B1FA /* Pods-Unsplash-Demo-Unsplash-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-Demo-Unsplash-DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Unsplash-Demo-Unsplash-DemoUITests/Pods-Unsplash-Demo-Unsplash-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C90E0BFC5B65465E8A7A5E4B /* Pods_Unsplash_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC2B62E25E24F448A79C6F4E /* Pods-Unsplash-DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-DemoTests.debug.xcconfig"; path = "Target Support Files/Pods-Unsplash-DemoTests/Pods-Unsplash-DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5515D14DAFC64B009F9DF736 /* Pods_Unsplash_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01F1C112FD451E15D622013 /* Pods_Unsplash_DemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +108,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				038BCFB480052D064A92C8F7 /* Pods_Unsplash_Demo_Unsplash_DemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		075F9914C11A31B3FC61FEB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				485CD31FC742F12E98F8E215 /* Pods-Unsplash-Demo.debug.xcconfig */,
+				0F9C99463D81F67729E7D44B /* Pods-Unsplash-Demo.release.xcconfig */,
+				C3234ED56D65C4FD0A33B1FA /* Pods-Unsplash-Demo-Unsplash-DemoUITests.debug.xcconfig */,
+				8E269A25E20C882CBCC08C33 /* Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig */,
+				FC2B62E25E24F448A79C6F4E /* Pods-Unsplash-DemoTests.debug.xcconfig */,
+				A73EDCD061F18F209902CFFB /* Pods-Unsplash-DemoTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5BADA09F2370D41A002AD1A4 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +135,8 @@
 				5BADA0C12370D41B002AD1A4 /* Unsplash-DemoTests */,
 				5BADA0CC2370D41B002AD1A4 /* Unsplash-DemoUITests */,
 				5BADA0A92370D41A002AD1A4 /* Products */,
+				075F9914C11A31B3FC61FEB7 /* Pods */,
+				C1456EAD10123E5E61696E50 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +153,12 @@
 		5BADA0AA2370D41A002AD1A4 /* Unsplash-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				5BADA0EC2370D8AE002AD1A4 /* AppComponent.swift */,
 				5BADA0AB2370D41A002AD1A4 /* AppDelegate.swift */,
 				5BADA0AD2370D41A002AD1A4 /* SceneDelegate.swift */,
-				5BADA0AF2370D41A002AD1A4 /* ViewController.swift */,
-				5BADA0B12370D41A002AD1A4 /* Main.storyboard */,
+				5BADA0DB2370D461002AD1A4 /* Managers */,
+				5BADA0DC2370D467002AD1A4 /* Root */,
+				5BADA0F32370E030002AD1A4 /* Shared */,
 				5BADA0B42370D41B002AD1A4 /* Assets.xcassets */,
 				5BADA0B62370D41B002AD1A4 /* LaunchScreen.storyboard */,
 				5BADA0B92370D41B002AD1A4 /* Info.plist */,
@@ -128,6 +184,58 @@
 			path = "Unsplash-DemoUITests";
 			sourceTree = "<group>";
 		};
+		5BADA0DB2370D461002AD1A4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5BADA0DF2370D49A002AD1A4 /* ImageManager.swift */,
+				5BADA0DD2370D47E002AD1A4 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		5BADA0DC2370D467002AD1A4 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				5BADA0EE2370DF9F002AD1A4 /* Views */,
+				5BADA0E62370D7FB002AD1A4 /* RootBuilder.swift */,
+				5BADA0E72370D7FB002AD1A4 /* RootInteractor.swift */,
+				5BADA0E42370D7FB002AD1A4 /* RootRouter.swift */,
+				5BADA0E52370D7FB002AD1A4 /* RootViewController.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		5BADA0EE2370DF9F002AD1A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BADA0EF2370DFBE002AD1A4 /* RootCollectionView.swift */,
+				5BADA0F12370DFCD002AD1A4 /* RootCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BADA0F32370E030002AD1A4 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5BADA0F42370E03F002AD1A4 /* Constants.swift */,
+				5BADA0FA2370F6A5002AD1A4 /* Errors.swift */,
+				5BADA0F62370EB2B002AD1A4 /* Image.swift */,
+				5BADA0F82370EC98002AD1A4 /* ImagePage.swift */,
+				5BADA0FC23710B49002AD1A4 /* ImageURLs.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		C1456EAD10123E5E61696E50 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C90E0BFC5B65465E8A7A5E4B /* Pods_Unsplash_Demo.framework */,
+				B9D301992EB055C9C7275D1A /* Pods_Unsplash_Demo_Unsplash_DemoUITests.framework */,
+				0C15EDD8184DC1CB3CC71EB3 /* Pods_Unsplash_DemoTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +243,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BADA0D22370D41B002AD1A4 /* Build configuration list for PBXNativeTarget "Unsplash-Demo" */;
 			buildPhases = (
+				ABE6CF6BEB4682E7FAA1106F /* [CP] Check Pods Manifest.lock */,
 				5BADA0A42370D41A002AD1A4 /* Sources */,
 				5BADA0A52370D41A002AD1A4 /* Frameworks */,
 				5BADA0A62370D41A002AD1A4 /* Resources */,
+				3CC06CAE64DE6EB778D7B501 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +262,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BADA0D52370D41B002AD1A4 /* Build configuration list for PBXNativeTarget "Unsplash-DemoTests" */;
 			buildPhases = (
+				CF445B5FF3A3C9036CFFF5FC /* [CP] Check Pods Manifest.lock */,
 				5BADA0BA2370D41B002AD1A4 /* Sources */,
 				5BADA0BB2370D41B002AD1A4 /* Frameworks */,
 				5BADA0BC2370D41B002AD1A4 /* Resources */,
@@ -170,9 +281,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5BADA0D82370D41B002AD1A4 /* Build configuration list for PBXNativeTarget "Unsplash-DemoUITests" */;
 			buildPhases = (
+				E04046E7E0802AF0EC2CC367 /* [CP] Check Pods Manifest.lock */,
 				5BADA0C52370D41B002AD1A4 /* Sources */,
 				5BADA0C62370D41B002AD1A4 /* Frameworks */,
 				5BADA0C72370D41B002AD1A4 /* Resources */,
+				E708CD8BE5A05AD5D68D0BC8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -234,7 +347,6 @@
 			files = (
 				5BADA0B82370D41B002AD1A4 /* LaunchScreen.storyboard in Resources */,
 				5BADA0B52370D41B002AD1A4 /* Assets.xcassets in Resources */,
-				5BADA0B32370D41A002AD1A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,14 +366,130 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3CC06CAE64DE6EB778D7B501 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unsplash-Demo/Pods-Unsplash-Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unsplash-Demo/Pods-Unsplash-Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Unsplash-Demo/Pods-Unsplash-Demo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ABE6CF6BEB4682E7FAA1106F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Unsplash-Demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF445B5FF3A3C9036CFFF5FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Unsplash-DemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E04046E7E0802AF0EC2CC367 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Unsplash-Demo-Unsplash-DemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E708CD8BE5A05AD5D68D0BC8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unsplash-Demo-Unsplash-DemoUITests/Pods-Unsplash-Demo-Unsplash-DemoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Unsplash-Demo-Unsplash-DemoUITests/Pods-Unsplash-Demo-Unsplash-DemoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Unsplash-Demo-Unsplash-DemoUITests/Pods-Unsplash-Demo-Unsplash-DemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5BADA0A42370D41A002AD1A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BADA0B02370D41A002AD1A4 /* ViewController.swift in Sources */,
+				5BADA0DE2370D47E002AD1A4 /* NetworkManager.swift in Sources */,
+				5BADA0FB2370F6A5002AD1A4 /* Errors.swift in Sources */,
+				5BADA0EA2370D7FB002AD1A4 /* RootBuilder.swift in Sources */,
+				5BADA0FD23710B49002AD1A4 /* ImageURLs.swift in Sources */,
+				5BADA0E82370D7FB002AD1A4 /* RootRouter.swift in Sources */,
+				5BADA0F22370DFCD002AD1A4 /* RootCell.swift in Sources */,
+				5BADA0E92370D7FB002AD1A4 /* RootViewController.swift in Sources */,
+				5BADA0F02370DFBE002AD1A4 /* RootCollectionView.swift in Sources */,
+				5BADA0F72370EB2B002AD1A4 /* Image.swift in Sources */,
 				5BADA0AC2370D41A002AD1A4 /* AppDelegate.swift in Sources */,
+				5BADA0F92370EC98002AD1A4 /* ImagePage.swift in Sources */,
+				5BADA0ED2370D8AE002AD1A4 /* AppComponent.swift in Sources */,
+				5BADA0E02370D49A002AD1A4 /* ImageManager.swift in Sources */,
+				5BADA0EB2370D7FB002AD1A4 /* RootInteractor.swift in Sources */,
 				5BADA0AE2370D41A002AD1A4 /* SceneDelegate.swift in Sources */,
+				5BADA0F52370E03F002AD1A4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +525,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5BADA0B12370D41A002AD1A4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5BADA0B22370D41A002AD1A4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5BADA0B62370D41B002AD1A4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -432,6 +652,7 @@
 		};
 		5BADA0D32370D41B002AD1A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 485CD31FC742F12E98F8E215 /* Pods-Unsplash-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -444,12 +665,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.IamGoodBad.Unsplash-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		5BADA0D42370D41B002AD1A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F9C99463D81F67729E7D44B /* Pods-Unsplash-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -462,12 +684,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.IamGoodBad.Unsplash-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		5BADA0D62370D41B002AD1A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC2B62E25E24F448A79C6F4E /* Pods-Unsplash-DemoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +713,7 @@
 		};
 		5BADA0D72370D41B002AD1A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A73EDCD061F18F209902CFFB /* Pods-Unsplash-DemoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +736,7 @@
 		};
 		5BADA0D92370D41B002AD1A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3234ED56D65C4FD0A33B1FA /* Pods-Unsplash-Demo-Unsplash-DemoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +757,7 @@
 		};
 		5BADA0DA2370D41B002AD1A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E269A25E20C882CBCC08C33 /* Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
