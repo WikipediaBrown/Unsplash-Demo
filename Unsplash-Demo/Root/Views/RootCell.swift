@@ -12,6 +12,7 @@ class RootCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 8
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -19,6 +20,8 @@ class RootCell: UICollectionViewCell {
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+        label.textAlignment = .natural
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

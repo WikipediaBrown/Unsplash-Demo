@@ -34,6 +34,10 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     
     func routeToDetail() {
         
+        for _ in viewController.uiviewController.children {
+            viewController.uiviewController.dismiss(animated: false, completion: nil)
+        }
+        
         let detailRouter = DetailBuilder(dependency: component).build(withListener: interactor)
         let detailViewController = detailRouter.viewControllable.uiviewController
         

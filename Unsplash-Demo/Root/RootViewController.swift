@@ -19,6 +19,9 @@ protocol RootPresentableListener: class {
     func onNextPage()
     func onSearch(with query: String)
     func onSelect(at index: Int)
+    func onSwitchToSearch(filterWord: String?) -> String
+    func onSwitchToFilter(searchWord: String?) -> String
+    func onFilter(filterWord: String)
 }
 
 final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
@@ -33,6 +36,14 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         return view
     }()
     
+    private let segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl()
+        control.insertSegment(withTitle: "Search", at: 0, animated: false)
+        control.insertSegment(withTitle: "Filter", at: 1, animated: false)
+        control.selectedSegmentIndex = 0
+        control.translatesAutoresizingMaskIntoConstraints = false
+        return control
+    }()
 
     weak var listener: RootPresentableListener?
     
@@ -63,27 +74,61 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         }
     }
     
+    func searchSelected() {
+        // store filter word
+        let filterWord = searchController.searchBar.text
+        searchController.searchBar.text = listener?.onSwitchToSearch(filterWord: filterWord)
+    }
+    
+    func filterSelected() {
+        let searchWord = searchController.searchBar.text
+        searchController.searchBar.text = listener?.onSwitchToFilter(searchWord: searchWord)
+    }
+    
+    @objc
+    func valueChanged(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            searchSelected()
+        default:
+            filterSelected()
+        }
+    }
+
     private func setupViews() {
         let searchBar = searchController.searchBar
         
         containerView.addSubview(searchBar)
-        containerView.addSubview(suggestionsView)
 
         view.addSubview(containerView)
         view.addSubview(collectionView)
-//        view.backgroundColor = .white
+        view.addSubview(suggestionsView)
+        view.addSubview(segmentedControl)
+        
+        suggestionsView.listener = self
+        segmentedControl.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+
+        view.backgroundColor = .white
 
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 9)
+            containerView.heightAnchor.constraint(equalToConstant: 54)
         ])
         
         NSLayoutConstraint.activate([
-            suggestionsView.topAnchor.constraint(equalTo: containerView.bottomAnchor),
-            suggestionsView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
-            suggestionsView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+            segmentedControl.topAnchor.constraint(equalTo: containerView.bottomAnchor),
+            segmentedControl.leftAnchor.constraint(equalTo: view.leftAnchor),
+            segmentedControl.rightAnchor.constraint(equalTo: view.rightAnchor),
+            segmentedControl.heightAnchor.constraint(equalToConstant: Constants.CGFloats.suggestedCellHeight  - 8)
+        ])
+        
+        NSLayoutConstraint.activate([
+            suggestionsView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8),
+            suggestionsView.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
+            suggestionsView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            suggestionsView.rightAnchor.constraint(equalTo: view.rightAnchor),
             suggestionsView.heightAnchor.constraint(equalToConstant: Constants.CGFloats.suggestedCellHeight)
         ])
         
@@ -102,6 +147,15 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         searchController.obscuresBackgroundDuringPresentation = false
         
         searchBar.delegate = self
+    }
+}
+
+extension RootViewController: SuggestionsViewListening {
+    func searchWith(string: String) {
+        if segmentedControl.selectedSegmentIndex != 0 {
+            segmentedControl.selectedSegmentIndex = 0
+        }
+        listener?.onSearch(with: string)
     }
 }
 
@@ -142,22 +196,28 @@ extension RootViewController: UIScrollViewDelegate {
 
 extension RootViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
-    print(searchController.searchBar.text)
+    guard let string = searchController.searchBar.text, string != "" else { return }
+    switch segmentedControl.selectedSegmentIndex {
+    case 1:
+        listener?.onFilter(filterWord: string)
+        collectionView.reloadData()
+    default:
+        break
+    }
   }
 }
 
 extension RootViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else { return }
+        guard let string = searchBar.text, string != "" else { return }
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            listener?.onSearch(with: string)
+        default:
+            break
+        }
         
         searchController.isActive = false
-        
-        switch text {
-        case "":
-            break
-        default:
-            listener?.onSearch(with: text)
-        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

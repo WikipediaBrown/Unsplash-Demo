@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol SuggestionsViewListening: class {
+    func searchWith(string: String)
+}
+
 class SuggestionsView: UICollectionView {
     
+    var listener: SuggestionsViewListening?
     var queryHistory = [String?]()
     var querySuggestions = [String?]()
     
@@ -17,15 +22,16 @@ class SuggestionsView: UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.sectionInset = .zero
+        layout.minimumInteritemSpacing = 4
         
         super.init(frame: .zero, collectionViewLayout: layout)
-        backgroundColor = . red
-        contentInset = .zero
+        alwaysBounceHorizontal = true
+        backgroundColor = .white
         dataSource = self
         delegate = self
         register(SuggestionsCell.self, forCellWithReuseIdentifier: SuggestionsCell.description())
+        isScrollEnabled = true
+        isUserInteractionEnabled = true
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -71,6 +77,17 @@ extension SuggestionsView: UICollectionViewDelegate {
             break
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let string: String
+        switch indexPath.section {
+        case 0:
+            string = queryHistory[indexPath.item] ?? ""
+        default:
+            string = querySuggestions[indexPath.item] ?? ""
+        }
+        listener?.searchWith(string: string)
+    }
 }
 
 extension SuggestionsView: UICollectionViewDelegateFlowLayout {
@@ -78,6 +95,8 @@ extension SuggestionsView: UICollectionViewDelegateFlowLayout {
         let string: String
         let width: CGFloat
         let height: CGFloat = Constants.CGFloats.suggestedCellHeight
+        let fontSize = UIFont.systemFontSize
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: fontSize)]
         
         switch indexPath.section {
         case 0:
@@ -86,8 +105,7 @@ extension SuggestionsView: UICollectionViewDelegateFlowLayout {
             string = querySuggestions[indexPath.item] ?? ""
         }
         
-        width = NSString(string: string).size(withAttributes: nil).width + 20
-        print(width)
+        width = NSString(string: string).size(withAttributes: attributes).width + 20
         return CGSize(width: width, height: height)
     }
 }

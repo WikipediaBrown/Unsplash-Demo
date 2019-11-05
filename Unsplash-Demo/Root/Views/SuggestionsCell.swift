@@ -13,11 +13,10 @@ class SuggestionsCell: UICollectionViewCell {
     private let label: UILabel = {
         let color = UIColor.systemBlue
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         label.textAlignment = .center
         label.textColor = color
-        label.layer.borderColor = color.cgColor
-        label.layer.borderWidth = 2
-        label.layer.cornerRadius = Constants.CGFloats.suggestedCellHeight / 2
+        label.baselineAdjustment = .none
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -36,13 +35,16 @@ class SuggestionsCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        addSubview(label)
-        backgroundColor = .white
+        contentView.layer.borderColor = UIColor.systemBlue.cgColor
+        contentView.layer.borderWidth = 2
+        contentView.layer.cornerRadius = Constants.CGFloats.suggestedCellHeight / 2
+        contentView.addSubview(label)
+        contentView.backgroundColor = .white
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.leftAnchor.constraint(equalTo: leftAnchor),
-            label.rightAnchor.constraint(equalTo: rightAnchor)
+            label.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            label.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
+            label.leftAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leftAnchor),
+            label.rightAnchor.constraint(equalTo: contentView.layoutMarginsGuide.rightAnchor)
         ])
     }
 }

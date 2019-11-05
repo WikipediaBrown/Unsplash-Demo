@@ -32,14 +32,16 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     weak var router: RootRouting?
     weak var listener: RootListener?
     
-    var currentPage: Int = 0
-    var currentImages: [Image]?
-    var images: [Image] = []
-    var imageManager: ImageManaging?
-    var networkManager: NetworkManaging?
-    var searchQueries: Queue<String> = Queue<String>()
-    
+    private var currentPage: Int = 0
+    private var currentImages: [Image]?
+    private var images: [Image] = []
+    private var imageManager: ImageManaging?
+    private var networkManager: NetworkManaging?
+    private var searchQueries: Queue<String> = Queue<String>()
+    private var commonQueries = ["Green", "Mountains", "Blue", "Mom", "Grand", "Fun", "Great", "Grey", "Sand", "beach", "forrest", "intern", "gloves", "Parka", "sword", ]
     private var query = "green"
+    private var filter = ""
+    private var isFiltering = false
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
@@ -61,7 +63,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     }
     
     func onCountRequest() -> Int {
-        return images.count
+        return currentImages?.count ?? images.count
     }
     
     func onNextPage() {
@@ -69,15 +71,14 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     }
     
     func onRegularImageRequest(at index: Int) -> Image {
-        
         let image = images[index]
 
         imageManager?.getImage(from: image.urls.thumb, at: index, completion: { [weak self] (result) in
-
             switch result {
             case .success(let uiImage):
                 self?.images[uiImage.1].thumbnailImage = uiImage.0
-                self?.presenter.presentImage(image: uiImage.0, at: uiImage.1)
+                self?.presenter.updateData()
+//                self?.presenter.presentImage(image: uiImage.0, at: uiImage.1)
             case .failure(let error):
                 print(error)
             }
@@ -86,30 +87,20 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         return image
     }
     
-    private func getPageWith(query: String, page: Int) {
-
-        networkManager?.get(from: page, query: query) { [weak self] result in
-            switch result {
-            case .success(let imagePage):
-                self?.query = query
-                self?.images.append(contentsOf: imagePage.results)
-                self?.presenter.updateData()
-            case .failure(let error):
-                print(error)
-            }
+    func onSearch(with query: String) {
+        var duplicate = false
+        for searchString in searchQueries.allElements {
+            if searchString == query { duplicate = true; break}
         }
         
-        currentPage += 1
-        
-    }
-    
-    func onSearch(with query: String) {
-        
-        if searchQueries.count >= 5 { let _ = searchQueries.dequeue() }
-        searchQueries.enqueue(query)
-        presenter.updateHistory(with: searchQueries.allElements)
+        if !duplicate {
+            if searchQueries.count >= 5 { let _ = searchQueries.dequeue() }
+            searchQueries.enqueue(query)
+            presenter.updateHistory(with: searchQueries.allElements)
+        }
         
         currentPage = 0
+        currentImages = nil
         images = []
         getPageWith(query: query, page: currentPage)
         
@@ -121,7 +112,57 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     }
     
     func onDismiss() {
+        imageManager?.selectedImage = nil
         router?.routeFromDetail()
+    }
+    
+    func onSwitchToSearch(filterWord: String?) -> String {
+        currentImages = images
+        filter = filterWord ?? ""
+        isFiltering = false
+        presenter.updateData()
+        return query
+    }
+    
+    func onSwitchToFilter(searchWord: String?) -> String {
+        query = searchWord ?? ""
+        isFiltering = true
+        if filter != "" {
+            currentImages = images.filter {($0.alt_description?.contains(filter) ?? false)}
+        } else {
+            currentImages = images
+        }
+        presenter.updateData()
+        return filter
+    }
+    
+    func onFilter(filterWord: String) {
+        if filterWord != "" {
+            currentImages = images.filter {($0.alt_description?.lowercased().contains(filterWord.lowercased()) ?? false)}
+        } else {
+            currentImages = images
+        }
+        filter = filterWord
+    }
+    
+    private func getPageWith(query: String, page: Int) {
+
+        networkManager?.get(from: page, query: query) { [weak self] result in
+            switch result {
+            case .success(let imagePage):
+                self?.query = query
+                self?.images.append(contentsOf: imagePage.results)
+                if self?.isFiltering ?? false {
+                    self?.onFilter(filterWord: self?.filter ?? "")
+                }
+                self?.presenter.updateData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        currentPage += 1
+        
     }
     
 }
