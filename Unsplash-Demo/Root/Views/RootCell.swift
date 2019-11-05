@@ -33,7 +33,7 @@ class RootCell: UICollectionViewCell {
     }
     
     func displayImage(image: Image?) {
-        descriptionLabel.text = image?.description
+        descriptionLabel.text = image?.alt_description
         imageView.backgroundColor = getColorFrom(hex: image?.color ?? "")
         imageView.image = image?.thumbnailImage
     }

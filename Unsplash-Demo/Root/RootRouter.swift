@@ -8,7 +8,7 @@
 
 import RIBs
 
-protocol RootInteractable: Interactable {
+protocol RootInteractable: Interactable, DetailListener {
     var router: RootRouting? { get set }
     var listener: RootListener? { get set }
 }
@@ -18,10 +18,30 @@ protocol RootViewControllable: ViewControllable {
 }
 
 final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, RootRouting {
+    
+    var component: RootComponent
 
     // TODO: Constructor inject child builder protocols to allow building children.
-    override init(interactor: RootInteractable, viewController: RootViewControllable) {
+    init(interactor: RootInteractable, viewController: RootViewControllable, component: RootComponent) {
+        self.component = component
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
+    }
+    
+    func routeFromDetail() {
+
+        for child in children {
+            detachChild(child)
+        }
+    }
+    
+    func routeToDetail() {
+        
+        let detailRouter = DetailBuilder(dependency: component).build(withListener: interactor)
+        let detailViewController = detailRouter.viewControllable.uiviewController
+        
+        attachChild(detailRouter)
+        viewController.uiviewController.present(detailViewController, animated: true, completion: nil)
+        
     }
 }

@@ -13,7 +13,7 @@ protocol RootDependency: Dependency {
     // created by this RIB.
 }
 
-final class RootComponent: Component<RootDependency> {
+final class RootComponent: Component<RootDependency>, DetailDependency {
     lazy var networkManager: NetworkManaging = NetworkManager()
     lazy var imageManager: ImageManaging = ImageManager()
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
@@ -35,6 +35,6 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         let component = RootComponent(dependency: dependency)
         let viewController = RootViewController()
         let interactor = RootInteractor(presenter: viewController, networkManager: component.networkManager, imageManager: component.imageManager)
-        return RootRouter(interactor: interactor, viewController: viewController)
+        return RootRouter(interactor: interactor, viewController: viewController, component: component)
     }
 }

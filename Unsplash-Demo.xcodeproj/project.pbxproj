@@ -30,6 +30,11 @@
 		5BADA0FB2370F6A5002AD1A4 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0FA2370F6A5002AD1A4 /* Errors.swift */; };
 		5BADA0FD23710B49002AD1A4 /* ImageURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0FC23710B49002AD1A4 /* ImageURLs.swift */; };
 		5BADA0FF23713990002AD1A4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA0FE23713990002AD1A4 /* SearchView.swift */; };
+		5BADA10323715B25002AD1A4 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10223715B25002AD1A4 /* Queue.swift */; };
+		5BADA10923715F32002AD1A4 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10523715F32002AD1A4 /* DetailRouter.swift */; };
+		5BADA10A23715F32002AD1A4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10623715F32002AD1A4 /* DetailViewController.swift */; };
+		5BADA10B23715F32002AD1A4 /* DetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10723715F32002AD1A4 /* DetailBuilder.swift */; };
+		5BADA10C23715F32002AD1A4 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10823715F32002AD1A4 /* DetailInteractor.swift */; };
 		F01F1C112FD451E15D622013 /* Pods_Unsplash_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C15EDD8184DC1CB3CC71EB3 /* Pods_Unsplash_DemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +86,11 @@
 		5BADA0FA2370F6A5002AD1A4 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5BADA0FC23710B49002AD1A4 /* ImageURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLs.swift; sourceTree = "<group>"; };
 		5BADA0FE23713990002AD1A4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		5BADA10223715B25002AD1A4 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		5BADA10523715F32002AD1A4 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		5BADA10623715F32002AD1A4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5BADA10723715F32002AD1A4 /* DetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuilder.swift; sourceTree = "<group>"; };
+		5BADA10823715F32002AD1A4 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		8E269A25E20C882CBCC08C33 /* Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Unsplash-Demo-Unsplash-DemoUITests/Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A73EDCD061F18F209902CFFB /* Pods-Unsplash-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-DemoTests.release.xcconfig"; path = "Target Support Files/Pods-Unsplash-DemoTests/Pods-Unsplash-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		B9D301992EB055C9C7275D1A /* Pods_Unsplash_Demo_Unsplash_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_Demo_Unsplash_DemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,9 +165,8 @@
 		5BADA0AA2370D41A002AD1A4 /* Unsplash-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				5BADA0EC2370D8AE002AD1A4 /* AppComponent.swift */,
-				5BADA0AB2370D41A002AD1A4 /* AppDelegate.swift */,
-				5BADA0AD2370D41A002AD1A4 /* SceneDelegate.swift */,
+				5BADA10D23715F45002AD1A4 /* App Start */,
+				5BADA10423715F22002AD1A4 /* Detail */,
 				5BADA0DB2370D461002AD1A4 /* Managers */,
 				5BADA0DC2370D467002AD1A4 /* Root */,
 				5BADA0F32370E030002AD1A4 /* Shared */,
@@ -221,12 +230,34 @@
 			isa = PBXGroup;
 			children = (
 				5BADA0F42370E03F002AD1A4 /* Constants.swift */,
+				5BADA10223715B25002AD1A4 /* Queue.swift */,
 				5BADA0FA2370F6A5002AD1A4 /* Errors.swift */,
 				5BADA0F62370EB2B002AD1A4 /* Image.swift */,
 				5BADA0F82370EC98002AD1A4 /* ImagePage.swift */,
 				5BADA0FC23710B49002AD1A4 /* ImageURLs.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		5BADA10423715F22002AD1A4 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5BADA10723715F32002AD1A4 /* DetailBuilder.swift */,
+				5BADA10823715F32002AD1A4 /* DetailInteractor.swift */,
+				5BADA10523715F32002AD1A4 /* DetailRouter.swift */,
+				5BADA10623715F32002AD1A4 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		5BADA10D23715F45002AD1A4 /* App Start */ = {
+			isa = PBXGroup;
+			children = (
+				5BADA0EC2370D8AE002AD1A4 /* AppComponent.swift */,
+				5BADA0AB2370D41A002AD1A4 /* AppDelegate.swift */,
+				5BADA0AD2370D41A002AD1A4 /* SceneDelegate.swift */,
+			);
+			path = "App Start";
 			sourceTree = "<group>";
 		};
 		C1456EAD10123E5E61696E50 /* Frameworks */ = {
@@ -478,16 +509,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BADA0DE2370D47E002AD1A4 /* NetworkManager.swift in Sources */,
+				5BADA10C23715F32002AD1A4 /* DetailInteractor.swift in Sources */,
 				5BADA0FB2370F6A5002AD1A4 /* Errors.swift in Sources */,
 				5BADA0EA2370D7FB002AD1A4 /* RootBuilder.swift in Sources */,
+				5BADA10923715F32002AD1A4 /* DetailRouter.swift in Sources */,
 				5BADA0FD23710B49002AD1A4 /* ImageURLs.swift in Sources */,
 				5BADA0E82370D7FB002AD1A4 /* RootRouter.swift in Sources */,
 				5BADA0F22370DFCD002AD1A4 /* RootCell.swift in Sources */,
+				5BADA10A23715F32002AD1A4 /* DetailViewController.swift in Sources */,
 				5BADA0FF23713990002AD1A4 /* SearchView.swift in Sources */,
+				5BADA10323715B25002AD1A4 /* Queue.swift in Sources */,
 				5BADA0E92370D7FB002AD1A4 /* RootViewController.swift in Sources */,
 				5BADA0F02370DFBE002AD1A4 /* RootCollectionView.swift in Sources */,
 				5BADA0F72370EB2B002AD1A4 /* Image.swift in Sources */,
 				5BADA0AC2370D41A002AD1A4 /* AppDelegate.swift in Sources */,
+				5BADA10B23715F32002AD1A4 /* DetailBuilder.swift in Sources */,
 				5BADA0F92370EC98002AD1A4 /* ImagePage.swift in Sources */,
 				5BADA0ED2370D8AE002AD1A4 /* AppComponent.swift in Sources */,
 				5BADA0E02370D49A002AD1A4 /* ImageManager.swift in Sources */,

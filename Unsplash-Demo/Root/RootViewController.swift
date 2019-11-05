@@ -18,6 +18,8 @@ protocol RootPresentableListener: class {
     func onRegularImageRequest(at index: Int) -> Image
     func onFullImageRequest(at index: Int) -> Image
     func onNextPage()
+    func onSearch(with query: String)
+    func onSelect(at index: Int)
 }
 
 final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
@@ -29,6 +31,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
     private let searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         return searchController
@@ -61,6 +64,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         let searchBar = searchController.searchBar
         
         containerView.addSubview(searchBar)
+
         view.addSubview(containerView)
         view.addSubview(collectionView)
 
@@ -68,7 +72,7 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: 50)
+            containerView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 9)
         ])
         
         NSLayoutConstraint.activate([
@@ -118,6 +122,10 @@ extension RootViewController: UICollectionViewDelegate {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listener?.onSelect(at: indexPath.item)
+    }
+    
 }
 
 extension RootViewController: UIScrollViewDelegate {
@@ -138,7 +146,16 @@ extension RootViewController: UISearchResultsUpdating {
 
 extension RootViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
         
+        searchController.isActive = false
+        
+        switch text {
+        case "":
+            break
+        default:
+            listener?.onSearch(with: text)
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

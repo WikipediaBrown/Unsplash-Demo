@@ -10,6 +10,8 @@ import RIBs
 import RxSwift
 
 protocol RootRouting: ViewableRouting {
+    func routeFromDetail()
+    func routeToDetail()
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
@@ -29,11 +31,12 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     weak var router: RootRouting?
     weak var listener: RootListener?
     
+    var currentPage: Int = 0
+    var currentImages: [Image]?
+    var images: [Image] = []
     var imageManager: ImageManaging?
     var networkManager: NetworkManaging?
-    var images: [Image] = []
-    var filteredImages: [Image] = []
-    var currentPage: Int = 0
+    var searchQueries: Queue<String> = Queue<String>()
     
     private var query = "green"
 
@@ -48,7 +51,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        onSearch(query: query, page: currentPage)
+        getPageWith(query: query, page: currentPage)
     }
 
     override func willResignActive() {
@@ -61,7 +64,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     }
     
     func onNextPage() {
-        onSearch(query: query, page: currentPage)
+        getPageWith(query: query, page: currentPage)
     }
     
     func onRegularImageRequest(at index: Int) -> Image {
@@ -101,7 +104,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         
     }
     
-    func onSearch(query: String, page: Int) {
+    private func getPageWith(query: String, page: Int) {
 
         networkManager?.get(from: page, query: query) { [weak self] result in
             switch result {
@@ -115,9 +118,28 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
             
         }
         
-        self.currentPage += 1
+        currentPage += 1
         
     }
     
+    func onSearch(with query: String) {
+        
+        if searchQueries.count >= 5 { let _ = searchQueries.dequeue() }
+        searchQueries.enqueue(query)
+        
+        currentPage = 0
+        images = []
+        getPageWith(query: query, page: currentPage)
+        
+    }
+    
+    func onSelect(at index: Int) {
+        imageManager?.selectedImage = currentImages?[index] ?? images[index]
+        router?.routeToDetail()
+    }
+    
+    func onDismiss() {
+        router?.routeFromDetail()
+    }
     
 }
