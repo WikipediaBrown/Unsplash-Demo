@@ -32,7 +32,10 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     var imageManager: ImageManaging?
     var networkManager: NetworkManaging?
     var images: [Image] = []
+    var filteredImages: [Image] = []
     var currentPage: Int = 0
+    
+    private var query = "green"
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
@@ -45,7 +48,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
 
     override func didBecomeActive() {
         super.didBecomeActive()
-        onSearch(query: "mountain", page: currentPage)
+        onSearch(query: query, page: currentPage)
     }
 
     override func willResignActive() {
@@ -55,6 +58,10 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     
     func onCountRequest() -> Int {
         return images.count
+    }
+    
+    func onNextPage() {
+        onSearch(query: query, page: currentPage)
     }
     
     func onRegularImageRequest(at index: Int) -> Image {
@@ -67,8 +74,6 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
             case .success(let uiImage):
                 self?.images[uiImage.1].thumbnailImage = uiImage.0
                 self?.presenter.presentImage(image: uiImage.0, at: uiImage.1)
-//                self?.presenter.updateData()
-
             case .failure(let error):
                 print(error)
             }
@@ -97,19 +102,20 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
     }
     
     func onSearch(query: String, page: Int) {
-        
-        networkManager?.get(from: page, query: query) { [weak self] result in
 
+        networkManager?.get(from: page, query: query) { [weak self] result in
             switch result {
             case .success(let imagePage):
+                self?.query = query
                 self?.images.append(contentsOf: imagePage.results)
-                self?.currentPage += 1
                 self?.presenter.updateData()
             case .failure(let error):
                 print(error)
             }
             
         }
+        
+        self.currentPage += 1
         
     }
     

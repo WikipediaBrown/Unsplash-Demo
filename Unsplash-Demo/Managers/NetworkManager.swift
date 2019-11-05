@@ -22,9 +22,10 @@ class NetworkManager: NetworkManaging {
         components.host = "api.unsplash.com"
         components.path = "/search/photos"
         
-        let query = URLQueryItem(name: "query", value: query)
+        let searchQuery = URLQueryItem(name: "query", value: query)
+        let pageQuery = URLQueryItem(name: "page", value: String(page))
 
-        components.queryItems = [query]
+        components.queryItems = [searchQuery, pageQuery]
         
         
         guard let url = components.url else { return }
@@ -37,7 +38,7 @@ class NetworkManager: NetworkManaging {
         request.addValue(accessKey, forHTTPHeaderField: "Authorization")
 
         let _ = session.dataTask(with: request) {(data, response, error) in
-            
+
             guard
                 let data = data,
                 let page = try? JSONDecoder().decode(ImagePage.self, from: data)

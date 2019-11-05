@@ -15,11 +15,13 @@ struct Image: Codable {
     let urls: ImageURLs
     var thumbnailImage: UIImage?
     var fullImage: UIImage?
+    var created_at: String
     
     private enum CodingKeys: String, CodingKey {
         case alt_description
         case description
         case color
         case urls
+        case created_at
     }
 }

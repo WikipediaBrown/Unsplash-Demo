@@ -18,6 +18,7 @@ class RootCollectionView: UICollectionView {
         layout.minimumInteritemSpacing = 0
         
         super.init(frame: .zero, collectionViewLayout: layout)
+        backgroundColor = .white
         register(RootCell.self, forCellWithReuseIdentifier: RootCell.description())
         translatesAutoresizingMaskIntoConstraints = false
     }

@@ -11,7 +11,7 @@ import UIKit
 enum Constants {
     enum CGSizes {
         static var rootCellSize: CGSize {
-            let width = floor(UIScreen.main.bounds.width / 2)
+            let width = (UIScreen.main.bounds.width / 2)
             return CGSize(width: width, height: floor(width * 1.5))
         }
     }
