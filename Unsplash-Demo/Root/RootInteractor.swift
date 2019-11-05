@@ -19,6 +19,7 @@ protocol RootPresentable: Presentable {
     var listener: RootPresentableListener? { get set }
     func updateData()
     func presentImage(image: UIImage, at index: Int)
+    func updateHistory(with history: [String?])
     // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
@@ -85,25 +86,6 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         return image
     }
     
-    func onFullImageRequest(at index: Int) -> Image {
-        
-        let image = images[index]
-        
-        imageManager?.getImage(from: image.urls.full, at: index, completion: { [weak self] (result) in
-            
-            switch result {
-            case .success(let uiImage):
-                self?.images[index].fullImage = uiImage.0
-                self?.presenter.updateData()
-            case .failure(let error):
-                print(error)
-            }
-        })
-                
-        return image
-        
-    }
-    
     private func getPageWith(query: String, page: Int) {
 
         networkManager?.get(from: page, query: query) { [weak self] result in
@@ -115,7 +97,6 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
             case .failure(let error):
                 print(error)
             }
-            
         }
         
         currentPage += 1
@@ -126,6 +107,7 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         
         if searchQueries.count >= 5 { let _ = searchQueries.dequeue() }
         searchQueries.enqueue(query)
+        presenter.updateHistory(with: searchQueries.allElements)
         
         currentPage = 0
         images = []

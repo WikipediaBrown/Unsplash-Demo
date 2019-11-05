@@ -22,7 +22,7 @@ class ImageManager: ImageManaging {
     
     init() {}
         
-    func getImage(from string: String, at index: Int,  completion: @escaping (Result<(UIImage, Int), NetworkError>) -> Void) {
+    func getImage(from string: String, at index: Int = 0,  completion: @escaping (Result<(UIImage, Int), NetworkError>) -> Void) {
         
         if let image = cache.object(forKey: string as NSString) {
             completion(.success((image, index)))

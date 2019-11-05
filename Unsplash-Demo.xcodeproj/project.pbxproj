@@ -35,6 +35,8 @@
 		5BADA10A23715F32002AD1A4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10623715F32002AD1A4 /* DetailViewController.swift */; };
 		5BADA10B23715F32002AD1A4 /* DetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10723715F32002AD1A4 /* DetailBuilder.swift */; };
 		5BADA10C23715F32002AD1A4 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10823715F32002AD1A4 /* DetailInteractor.swift */; };
+		5BADA10F23717116002AD1A4 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA10E23717116002AD1A4 /* SuggestionsView.swift */; };
+		5BADA11123717131002AD1A4 /* SuggestionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADA11023717131002AD1A4 /* SuggestionsCell.swift */; };
 		F01F1C112FD451E15D622013 /* Pods_Unsplash_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C15EDD8184DC1CB3CC71EB3 /* Pods_Unsplash_DemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +93,8 @@
 		5BADA10623715F32002AD1A4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5BADA10723715F32002AD1A4 /* DetailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBuilder.swift; sourceTree = "<group>"; };
 		5BADA10823715F32002AD1A4 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
+		5BADA10E23717116002AD1A4 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
+		5BADA11023717131002AD1A4 /* SuggestionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsCell.swift; sourceTree = "<group>"; };
 		8E269A25E20C882CBCC08C33 /* Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Unsplash-Demo-Unsplash-DemoUITests/Pods-Unsplash-Demo-Unsplash-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A73EDCD061F18F209902CFFB /* Pods-Unsplash-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unsplash-DemoTests.release.xcconfig"; path = "Target Support Files/Pods-Unsplash-DemoTests/Pods-Unsplash-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		B9D301992EB055C9C7275D1A /* Pods_Unsplash_Demo_Unsplash_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Unsplash_Demo_Unsplash_DemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +226,8 @@
 				5BADA0EF2370DFBE002AD1A4 /* RootCollectionView.swift */,
 				5BADA0F12370DFCD002AD1A4 /* RootCell.swift */,
 				5BADA0FE23713990002AD1A4 /* SearchView.swift */,
+				5BADA10E23717116002AD1A4 /* SuggestionsView.swift */,
+				5BADA11023717131002AD1A4 /* SuggestionsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -519,6 +525,7 @@
 				5BADA10A23715F32002AD1A4 /* DetailViewController.swift in Sources */,
 				5BADA0FF23713990002AD1A4 /* SearchView.swift in Sources */,
 				5BADA10323715B25002AD1A4 /* Queue.swift in Sources */,
+				5BADA11123717131002AD1A4 /* SuggestionsCell.swift in Sources */,
 				5BADA0E92370D7FB002AD1A4 /* RootViewController.swift in Sources */,
 				5BADA0F02370DFBE002AD1A4 /* RootCollectionView.swift in Sources */,
 				5BADA0F72370EB2B002AD1A4 /* Image.swift in Sources */,
@@ -526,6 +533,7 @@
 				5BADA10B23715F32002AD1A4 /* DetailBuilder.swift in Sources */,
 				5BADA0F92370EC98002AD1A4 /* ImagePage.swift in Sources */,
 				5BADA0ED2370D8AE002AD1A4 /* AppComponent.swift in Sources */,
+				5BADA10F23717116002AD1A4 /* SuggestionsView.swift in Sources */,
 				5BADA0E02370D49A002AD1A4 /* ImageManager.swift in Sources */,
 				5BADA0EB2370D7FB002AD1A4 /* RootInteractor.swift in Sources */,
 				5BADA0AE2370D41A002AD1A4 /* SceneDelegate.swift in Sources */,

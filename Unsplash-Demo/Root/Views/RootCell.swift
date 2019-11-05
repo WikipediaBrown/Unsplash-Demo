@@ -34,33 +34,12 @@ class RootCell: UICollectionViewCell {
     
     func displayImage(image: Image?) {
         descriptionLabel.text = image?.alt_description
-        imageView.backgroundColor = getColorFrom(hex: image?.color ?? "")
+        imageView.backgroundColor = Constants.getColorFrom(hex: image?.color ?? "")
         imageView.image = image?.thumbnailImage
     }
     
     func updateImage(image: UIImage) {
         imageView.image = image
-    }
-    
-    private func getColorFrom(hex: String) -> UIColor {
-        guard hex.count == 7 else { return .blue }
-        
-        let redStart = hex.index(hex.startIndex, offsetBy: 1)
-        let redEnd = hex.index(hex.startIndex, offsetBy: 2)
-        let greenStart = hex.index(hex.startIndex, offsetBy: 3)
-        let greenEnd = hex.index(hex.startIndex, offsetBy: 4)
-        let blueStart = hex.index(hex.startIndex, offsetBy: 5)
-        let blueEnd = hex.index(hex.startIndex, offsetBy: 6)
-
-        let redHex = String(hex[redStart...redEnd])
-        let greenHex = String(hex[greenStart...greenEnd])
-        let blueHex = String(hex[blueStart...blueEnd])
-        
-        let red = CGFloat(Int(redHex, radix: 16) ?? 255) / 255
-        let green = CGFloat(Int(greenHex, radix: 16) ?? 255) / 255
-        let blue = CGFloat(Int(blueHex, radix: 16) ?? 255) / 255
-
-        return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
     }
     
     private func setupViews() {

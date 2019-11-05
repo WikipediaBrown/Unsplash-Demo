@@ -14,11 +14,12 @@ class RootCollectionView: UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = Constants.CGSizes.rootCellSize
         layout.scrollDirection = .vertical
+        layout.sectionInset = .zero
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        
         super.init(frame: .zero, collectionViewLayout: layout)
-        backgroundColor = .white
+                backgroundColor = .white
+        contentInset = .zero
         register(RootCell.self, forCellWithReuseIdentifier: RootCell.description())
         translatesAutoresizingMaskIntoConstraints = false
     }

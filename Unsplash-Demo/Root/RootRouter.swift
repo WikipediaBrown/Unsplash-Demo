@@ -29,10 +29,7 @@ final class RootRouter: LaunchRouter<RootInteractable, RootViewControllable>, Ro
     }
     
     func routeFromDetail() {
-
-        for child in children {
-            detachChild(child)
-        }
+        for child in children { detachChild(child) }
     }
     
     func routeToDetail() {

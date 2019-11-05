@@ -16,7 +16,6 @@ protocol RootPresentableListener: class {
     // interactor class.
     func onCountRequest() -> Int
     func onRegularImageRequest(at index: Int) -> Image
-    func onFullImageRequest(at index: Int) -> Image
     func onNextPage()
     func onSearch(with query: String)
     func onSelect(at index: Int)
@@ -25,6 +24,8 @@ protocol RootPresentableListener: class {
 final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
         
     private let collectionView = RootCollectionView()
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let suggestionsView = SuggestionsView()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -32,22 +33,12 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         return view
     }()
     
-    private let searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        return searchController
-    }()
 
     weak var listener: RootPresentableListener?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-    }
-    
-    func updateData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
-        }
     }
     
     func presentImage(image: UIImage, at index: Int) {
@@ -60,13 +51,27 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         }
     }
     
+    func updateData() {
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    func updateHistory(with history: [String?]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.suggestionsView.loadHistory(history: history)
+        }
+    }
+    
     private func setupViews() {
         let searchBar = searchController.searchBar
         
         containerView.addSubview(searchBar)
+        containerView.addSubview(suggestionsView)
 
         view.addSubview(containerView)
         view.addSubview(collectionView)
+//        view.backgroundColor = .white
 
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -76,7 +81,14 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
         ])
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: containerView.bottomAnchor),
+            suggestionsView.topAnchor.constraint(equalTo: containerView.bottomAnchor),
+            suggestionsView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+            suggestionsView.rightAnchor.constraint(equalTo: containerView.rightAnchor),
+            suggestionsView.heightAnchor.constraint(equalToConstant: Constants.CGFloats.suggestedCellHeight)
+        ])
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: suggestionsView.bottomAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
@@ -87,17 +99,9 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
 
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         
         searchBar.delegate = self
-
-//        searchController.obscuresBackgroundDuringPresentation = false
-        
-//        searchController.obscuresBackgroundDuringPresentation = false
-//        searchController.searchBar.placeholder = "Search Candies"
-//
-//        navigationItem.searchController = searchController
-//        definesPresentationContext = true
-        
     }
 }
 
@@ -115,11 +119,9 @@ extension RootViewController: UICollectionViewDataSource {
 
 extension RootViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         guard let cell = cell as? RootCell else { return }
         let image = listener?.onRegularImageRequest(at: indexPath.item)
         cell.displayImage(image: image)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

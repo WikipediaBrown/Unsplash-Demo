@@ -32,12 +32,20 @@ final class DetailViewController: UIViewController, DetailPresentable, DetailVie
         setupViews()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         listener?.onDismiss()
     }
     
-    func setImage(image: Image) {
-        
+    func setData(image: Image) {
+        DispatchQueue.main.async {
+            self.imageView.backgroundColor = Constants.getColorFrom(hex: image.color)
+        }
+    }
+    
+    func setImage(image: UIImage) {
+        DispatchQueue.main.async {
+            self.imageView.image = image
+        }
     }
         
     private func setupViews() {
@@ -46,8 +54,8 @@ final class DetailViewController: UIViewController, DetailPresentable, DetailVie
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            imageView.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor),
+            imageView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: view.rightAnchor),
             imageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
         ])
     }

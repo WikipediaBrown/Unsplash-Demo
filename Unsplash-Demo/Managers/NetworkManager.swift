@@ -38,7 +38,6 @@ class NetworkManager: NetworkManaging {
         request.addValue(accessKey, forHTTPHeaderField: "Authorization")
 
         let _ = session.dataTask(with: request) {(data, response, error) in
-
             guard
                 let data = data,
                 let page = try? JSONDecoder().decode(ImagePage.self, from: data)

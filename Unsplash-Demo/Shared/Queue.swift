@@ -10,6 +10,7 @@ import Foundation
 
 struct Queue<T> {
 
+    var allElements: [T?] {Array(array[head...array.index(before: array.endIndex)])}
     var back: T? { return isEmpty ? nil : array[array.index(before: array.endIndex)]}
     var count: Int { return array.count - head}
     var front: T? { return isEmpty ? nil : array[head] }
@@ -17,7 +18,7 @@ struct Queue<T> {
     
     private var array = [T?]()
     private var head = 0
-    
+        
     mutating func dequeue() -> T? {
         guard head < array.count, let element = array[head] else { return nil }
         array[head] = nil
