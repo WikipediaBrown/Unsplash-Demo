@@ -41,16 +41,10 @@ class NetworkManager: NetworkManaging {
             guard
                 let data = data,
                 let page = try? JSONDecoder().decode(ImagePage.self, from: data)
-            else { return }
+            else { completion(.failure(.jsonDecodingError)); return }
             
-            switch page {
-            case nil:
-                completion(.failure(.jsonDecodingError))
-                return
-            default:
-                completion(.success(page))
-                return
-            }
+            completion(.success(page))
+            return
         }.resume()
     }
     
